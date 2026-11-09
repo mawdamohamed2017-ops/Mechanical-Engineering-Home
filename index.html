@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RefineryMech: Mechanical Engineering & Maintenance Portal</title>
+<style>
+:root{--bg:#f4f6f9;--surface:#fff;--ink:#0b1f3a;--muted:#55657d;--line:#d9e0ea;--navy:#0b1f3a;--blue:#1f5fa8;--amber:#f59e0b;--hero:#0b1f3a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1424;--surface:#12213a;--ink:#e8eef8;--muted:#9fb0c8;--line:#24365a;--blue:#6aa8ee;--hero:#071120;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1424;--surface:#12213a;--ink:#e8eef8;--muted:#9fb0c8;--line:#24365a;--blue:#6aa8ee;--hero:#071120;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1120px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff}
+header .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.logo{font-weight:800;letter-spacing:.3px}.logo b{color:var(--amber)}
+nav{display:flex;gap:16px;margin-inline-start:auto;overflow-x:auto;white-space:nowrap}
+nav a{color:#cfdaf0;text-decoration:none;font-size:14px}nav a:hover{color:var(--amber)}
+.hero{background:var(--hero);color:#fff;padding:56px 0 40px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center}
+.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 14px}.hero h1 em{color:var(--amber);font-style:normal}
+.hero p{color:#b9c8e2;max-width:52ch}
+.search{display:flex;gap:8px;margin-top:20px}
+.search input{flex:1;padding:12px 14px;border-radius:8px;border:2px solid transparent;font:inherit;background:#fff;color:#0b1f3a}
+.search input:focus{outline:none;border-color:var(--amber)}
+.btn{background:var(--amber);color:#1a1100;border:0;border-radius:8px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+section{padding:44px 0}section h2{font-size:26px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3{margin:0 0 6px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px}
+.dept{border-top:4px solid var(--amber);cursor:pointer;text-align:start;font:inherit;color:inherit}
+.dept .n{font-size:28px;font-weight:800;color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 14px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tag{display:inline-block;font-size:12px;background:rgba(245,158,11,.18);color:var(--ink);border-radius:6px;padding:1px 8px;margin:6px 4px 0 0}
+.res h3{display:flex;justify-content:space-between;gap:8px}.res small{color:var(--muted);font-weight:400}
+.res dl{margin:8px 0 0;font-size:13.5px}.res dt{font-weight:700;margin-top:6px}.res dd{margin:0;color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.calc{display:grid;gap:18px;grid-template-columns:1fr 1fr}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-size:14px}
+.field input,.field select{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.out{background:var(--navy);color:#fff;border-radius:12px;padding:18px}
+.out .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.out .row b{color:var(--amber)}.out p{font-size:13px;color:#b9c8e2;margin:12px 0 0}
+.warn{border-inline-start:4px solid #dc2626;background:rgba(220,38,38,.08);padding:10px 14px;border-radius:8px;font-size:14px;margin-top:14px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--surface);font-size:14px}
+th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--navy);color:#fff}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}details ol{margin:10px 0 0;color:var(--muted);font-size:14.5px}details li{margin-bottom:4px}
+footer{background:var(--navy);color:#b9c8e2;padding:28px 0;font-size:13.5px}
+@media(max-width:760px){.hero .wrap,.calc{grid-template-columns:1fr}.hero svg{max-height:160px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="logo">Refinery<b>Mech</b></div>
+<nav><a href="#departments">Departments</a><a href="#library">Library</a><a href="#tools">Calculators</a><a href="#standards">Standards</a><a href="#cases">Case studies</a><a href="#practices">Best practices</a></nav></div></header>
+
+<div class="hero"><div class="wrap"><div>
+<h1>Mechanical Engineering &amp; Maintenance <em>Excellence</em> in Oil &amp; Gas Industries</h1>
+<p>A technical reference for refinery mechanical maintenance engineers: static and rotating equipment, utilities, reliability, standards and working calculators.</p>
+<form class="search" onsubmit="event.preventDefault();document.getElementById('q').dispatchEvent(new Event('input'));location.hash='library'">
+<input id="q" type="search" placeholder="Search equipment, failure modes, standards…" aria-label="Global search"><button class="btn">Search</button></form></div>
+<svg viewBox="0 0 320 200" role="img" aria-label="Refinery column and vessel illustration"><g fill="none" stroke="#6aa8ee" stroke-width="2.5"><rect x="40" y="30" width="34" height="140" rx="17"/><rect x="100" y="60" width="44" height="110" rx="20"/><rect x="170" y="110" width="110" height="36" rx="18"/><path d="M57 30V12M122 60V20h40M225 110V70h50"/><path d="M20 170h290" stroke="#f59e0b"/></g><g stroke="#f59e0b" stroke-width="2"><path d="M40 70h34M40 110h34M100 100h44M100 130h44"/></g><circle cx="275" cy="62" r="8" fill="#f59e0b"/></svg></div></div>
+
+<main>
+<section id="departments"><div class="wrap"><h2>Engineering departments</h2><p class="sub">Select a department to filter the technical library.</p>
+<div class="grid" id="depts"></div></div></section>
+
+<section id="library" style="background:var(--surface)"><div class="wrap"><h2>Technical knowledge library</h2><p class="sub" id="count"></p>
+<div class="chips" id="chips"></div><div class="grid" id="results" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div></div></section>
+
+<section id="tools"><div class="wrap"><h2>Engineering calculators</h2><p class="sub">Screening-level calculations in SI units. Verify against project criteria and applicable code before use.</p>
+<div class="tabs" id="tabs"></div><div class="calc"><div id="form" class="card"></div><div class="out" id="out"></div></div>
+<div class="warn"><b>Safety:</b> calculator results are for estimation and learning. They do not replace approved design calculations, site procedures, permit-to-work or competent-engineer review.</div></div></section>
+
+<section id="standards" style="background:var(--surface)"><div class="wrap"><h2>Engineering standards &amp; codes</h2><p class="sub">Scope summaries only. Standards are copyrighted; obtain the current edition from the publisher.</p>
+<div class="tw"><table><thead><tr><th>Standard</th><th>Scope (summary)</th><th>Maintenance relevance</th></tr></thead><tbody id="stdbody"></tbody></table></div></div></section>
+
+<section id="cases"><div class="wrap"><h2>Troubleshooting &amp; case studies</h2><p class="sub">General engineering guidance. Confirm against the OEM manual and site procedures.</p><div id="caselist"></div></div></section>
+
+<section id="practices" style="background:var(--surface)"><div class="wrap"><h2>Maintenance best practices</h2><div class="grid">
+<div class="card"><h3>Criticality first</h3><p>Rank assets by safety, environmental and production consequence before choosing a strategy.</p></div>
+<div class="card"><h3>Plan the work</h3><p>Scope, parts, tools, permits and safe isolation defined before the job is scheduled.</p></div>
+<div class="card"><h3>Fix causes</h3><p>Run RCFA on repeat and high-consequence failures; track actions to closure.</p></div>
+<div class="card"><h3>Measure</h3><p>Track MTBF, MTTR, PM compliance, backlog weeks and planned-work percentage.</p></div></div></div></section>
+</main>
+
+<footer><div class="wrap">RefineryMech is a general technical reference. It distinguishes general engineering guidance from codes and standards, OEM recommendations and site-specific procedures; where they differ, the latter govern. Always follow lock-out/tag-out, gas testing and permit-to-work rules.</div></footer>
+
+<script>
+const D=[["static","Static Equipment"],["rotating","Rotating Equipment"],["utility","Utility Systems"],["mgmt","Maintenance Mgmt"],["rel","Reliability"]];
+const E=[
+["Pressure vessels","static","Pressure-containing shells with heads, nozzles and internals.","Internal corrosion, cracking, thinning under insulation (CUI)","Visual, UT thickness, MT/PT, scheduled internal inspection","ASME VIII, API 510, API 579-1"],
+["Shell &amp; tube heat exchangers","static","Tube bundle in a shell transferring heat between two fluids.","Tube leakage, fouling, erosion at inlet, vibration, galvanic corrosion","Hydrotest, eddy current tube testing, bundle pull and clean","TEMA, API 510"],
+["Storage tanks","static","Atmospheric welded tanks for crude and products.","Bottom-plate corrosion, settlement, roof leakage, shell corrosion","Floor scanning (MFL), shell UT, settlement survey","API 650, API 653"],
+["Piping systems","static","Process piping with supports, flanges and fittings.","Corrosion, erosion, CUI, fatigue at small-bore connections","UT thickness at CMLs, radiography, CUI inspection","ASME B31.3, API 570"],
+["Pressure relief valves","static","Devices protecting equipment from overpressure.","Seat leakage, fouling, plugged inlet, set-pressure drift","Bench test and pop test at risk-based intervals","API 520, API 521, API 576"],
+["Boilers","static","Steam generation units, water-tube or fire-tube.","Tube overheating, waterside corrosion, fireside fouling","Tube thickness survey, water chemistry review","Site statutory rules, ASME I"],
+["Centrifugal pumps","rotating","Convert shaft power to head via impeller.","Seal failure, bearing failure, cavitation, misalignment","Vibration trend, alignment check, performance test","API 610, API 682"],
+["Compressors","rotating","Centrifugal, axial or reciprocating gas compression.","Rotor vibration, seal gas faults, valve failure (recip.)","Vibration and temperature monitoring, oil analysis","API 617, API 618"],
+["Steam turbines","rotating","Drivers converting steam energy to shaft power.","Blade fouling, governor faults, bearing wear, overspeed trip faults","Overspeed trip test, borescope, vibration","API 611, API 612"],
+["Electric motors","rotating","Induction motors driving pumps, fans and compressors.","Bearing failure, winding insulation breakdown","Insulation resistance, vibration, thermography","IEC 60034, API 541"],
+["Cooling water &amp; towers","utility","Circulating system rejecting process heat.","Fouling, scaling, microbiological growth, fill and fan damage","Water chemistry, fill and basin inspection, fan gearbox checks","Site water-treatment programme"],
+["Compressed &amp; instrument air","utility","Plant and instrument air generation and drying.","Wet air, filter blockage, compressor valve wear","Dew-point check, filter differential monitoring","ISO 8573-1"],
+["Firefighting systems","utility","Pumps, ring main, hydrants, deluge and foam systems.","Pump start failure, corroded lines, blocked nozzles","Periodic flow and start testing","NFPA 20, NFPA 25"],
+["PM, CM, PdM, CBM","mgmt","Core maintenance strategies and their balance.","Over-maintenance, deferred PMs, growing backlog","PM compliance review, backlog ageing","ISO 55000"],
+["RCM, FMEA, RCFA","mgmt","Structured methods for strategy and failure analysis.","Superficial analysis, actions not closed","Review of action closure and repeat failures","SAE JA1011, IEC 60812"],
+["MTBF, MTTR, availability","rel","Core reliability and availability metrics.","Poor failure coding, mixed repair and wait time","Data quality audit of the CMMS","ISO 14224"],
+["Weibull &amp; criticality","rel","Life-data analysis and asset criticality ranking.","Small samples, censored data ignored","Fit review, confidence bounds","API 580, API 581"]];
+const S=[["ASME Section VIII","Rules for design and construction of pressure vessels.","Defines design basis, MAWP and nameplate data used in inspection."],
+["ASME B31.3","Process piping design, materials, fabrication, examination, testing.","Basis for repairs, hydrotest and pressure-class decisions."],
+["API 510","In-service inspection, repair, alteration and rerating of pressure vessels.","Drives inspection intervals and remaining-life assessment."],
+["API 570","In-service inspection of process piping.","Defines CML and corrosion-rate based intervals."],
+["API 653","Inspection, repair, alteration and reconstruction of storage tanks.","Tank out-of-service intervals and floor evaluation."],
+["API 650","Design and construction of welded tanks for oil storage.","Reference for new tanks and major repairs."],
+["API 610","Centrifugal pumps for petroleum, petrochemical and natural gas industries.","Baseline for bearing, seal and test requirements."],
+["API 617 / 618","Axial and centrifugal compressors / reciprocating compressors.","Vibration, seal and auxiliary system expectations."],
+["API 682","Shaft sealing systems for centrifugal and rotary pumps.","Seal plans and flush arrangements for troubleshooting."],
+["API 686","Machinery installation and installation design.","Foundation, grouting and alignment practice."],
+["API 580 / 581","Risk-based inspection methodology.","Risk-ranks equipment to set inspection priority."],
+["API 571","Damage mechanisms affecting fixed equipment in refining.","Identifies likely degradation to target in inspection."],
+["API 579-1 / ASME FFS-1","Fitness-for-service assessment of in-service equipment.","Decides continue, repair, rerate or replace."],
+["API 520 / 521","Sizing and installation of pressure-relieving devices / relief and depressuring systems.","Relief valve testing and rerating context."],
+["ISO 14224","Collection and exchange of reliability and maintenance data.","Standardises failure coding for MTBF analysis."],
+["ISO 55000","Asset management overview and terminology.","Framework for lifecycle asset decisions."],
+["NFPA 25","Inspection, testing and maintenance of water-based fire protection systems.","Test frequencies for fire pumps and deluge."]];
+const C=[["Mechanical seal failure","Repeated seal leakage on an end-suction process pump.",["Dry running or loss of flush (check API 682 plan and flush line)","Shaft deflection or misalignment","Face damage from cavitation or solids"],["Review seal drawing and flush plan against actual piping","Check alignment, shaft runout and vibration","Inspect failed faces: heat checking, chipping or wear pattern"],["Confirm flush flow and orifice condition","Correct alignment and suction condition","Add vibration and seal-pot level monitoring"]],
+["Heat exchanger tube leakage","Hydrocarbon found in cooling water return.",["Corrosion or pitting at tube wall","Erosion at inlet impingement area","Vibration-induced fretting at baffles"],["Isolate and pressure-test shell side","Eddy current test of the bundle","Inspect failed tubes and tube sheet"],["Plug failed tubes within permitted limit or retube","Install impingement protection if erosion","Review cooling-water chemistry and material selection"]],
+["Pressure vessel corrosion","Wall thinning found during turnaround thickness survey.",["Damage mechanism per API 571 for the service","Corrosion under insulation at damaged cladding","Process change increasing corrosivity"],["Grid UT and corrosion-rate calculation","Fitness-for-service assessment if below minimum thickness","Review operating history and injection points"],["Repair, rerate or replace per FFS and code","Restore insulation and sealant","Update inspection plan and corrosion monitoring"]]];
+const CALCS={
+pump:{t:"Pump power",f:[["Q","Flow rate (m³/h)",100],["H","Differential head (m)",50],["rho","Density (kg/m³)",998],["eta","Pump efficiency (%)",70]],
+ c:v=>{const hyd=v.rho*9.80665*v.Q*v.H/3.6e6,sh=hyd/(v.eta/100);return[["Hydraulic power",hyd,"kW"],["Shaft power",sh,"kW"]]},n:"P(hyd) = ρ·g·Q·H; shaft = P(hyd)/η. Add motor margin per API 610 and site rules."},
+vel:{t:"Pipe velocity",f:[["Q","Flow rate (m³/h)",100],["d","Inside diameter (mm)",154]],
+ c:v=>{const A=Math.PI*(v.d/1000)**2/4;return[["Velocity",v.Q/3600/A,"m/s"],["Flow area",A*1e4,"cm²"]]},n:"v = Q/A. Compare with the project line-sizing criteria for the service."},
+dp:{t:"Pressure drop",f:[["Q","Flow rate (m³/h)",100],["d","Inside diameter (mm)",154],["L","Straight length (m)",100],["rho","Density (kg/m³)",998],["mu","Viscosity (cP)",1],["e","Roughness (mm)",0.045]],
+ c:v=>{const D=v.d/1000,vel=v.Q/3600/(Math.PI*D*D/4),mu=v.mu/1000,Re=v.rho*vel*D/mu;
+  const f=Re<2300?64/Re:0.25/Math.pow(Math.log10(v.e/1000/(3.7*D)+5.74/Math.pow(Re,0.9)),2);
+  const dp=f*v.L/D*v.rho*vel*vel/2;return[["Reynolds number",Re,""],["Friction factor",f,""],["Pressure drop",dp/1e5,"bar"]]},n:"Darcy-Weisbach with Swamee-Jain friction factor (laminar: 64/Re). Excludes fittings and elevation."},
+hx:{t:"Heat exchanger",f:[["a","Hot in (°C)",150],["b","Hot out (°C)",90],["c","Cold in (°C)",30],["d","Cold out (°C)",70],["Q","Duty (kW)",1000],["U","U (W/m²·K)",400],["F","LMTD correction F",0.9]],
+ c:v=>{const d1=v.a-v.d,d2=v.b-v.c;if(d1<=0||d2<=0)return[["Check temperatures","Invalid",""]];const l=Math.abs(d1-d2)<1e-6?d1:(d1-d2)/Math.log(d1/d2);return[["Counter-current LMTD",l,"K"],["Required area",v.Q*1000/(v.U*v.F*l),"m²"]]},n:"A = Q/(U·F·LMTD). Use a rating program for final design; F depends on pass arrangement."},
+tank:{t:"Tank volume",f:[["D","Diameter (m)",20],["H","Shell height (m)",12],["h","Liquid level (m)",8]],
+ c:v=>{const a=Math.PI*v.D*v.D/4;return[["Total volume",a*v.H,"m³"],["Current volume",a*v.h,"m³"],["Current volume",a*v.h*6.28981,"bbl"]]},n:"Vertical cylindrical tank, flat bottom. Use the strapping table for custody transfer."},
+bolt:{t:"Bolt torque",f:[["d","Bolt diameter (mm)",24],["F","Target bolt load (kN)",120],["K","Nut factor K",0.2]],
+ c:v=>[["Torque",v.K*v.d*v.F,"N·m"]],n:"T = K·d·F. K depends on lubricant and surface; use the gasket and flange assembly procedure (ASME PCC-1) for actual values."},
+rel:{t:"MTBF / MTTR / availability",f:[["T","Operating time (h)",8000],["n","Number of failures",4],["R","Total repair time (h)",60]],
+ c:v=>{const m=v.T/v.n,r=v.R/v.n;return[["MTBF",m,"h"],["MTTR",r,"h"],["Inherent availability",100*m/(m+r),"%"],["Failure rate",1/m,"per h"]]},n:"MTBF = operating time / failures; MTTR = repair time / failures; A = MTBF/(MTBF+MTTR)."},
+unit:{t:"Pressure units",f:[["x","Value",10],["u","From unit",["bar","psi","kPa","MPa","kgf/cm²"]]],
+ c:v=>{const k={bar:1e5,psi:6894.757,kPa:1e3,MPa:1e6,"kgf/cm²":98066.5},p=v.x*k[v.u];return Object.keys(k).map(n=>[n,p/k[n],""])},n:"Conversions to Pa then to each unit."}};
+
+let dept="all";
+const $=id=>document.getElementById(id);
+function fmt(x){if(typeof x!=="number")return x;const a=Math.abs(x);return a>=1000?x.toLocaleString("en",{maximumFractionDigits:1}):a>=1?x.toFixed(2):x.toPrecision(3)}
+function renderDepts(){$("depts").innerHTML=D.map(([k,n])=>`<button class="card dept" data-k="${k}"><div class="n">${E.filter(e=>e[1]===k).length}</div><h3>${n}</h3><p>topics in library</p></button>`).join("");
+ $("depts").onclick=e=>{const b=e.target.closest("[data-k]");if(b){dept=b.dataset.k;renderChips();renderResults();location.hash="library"}}}
+function renderChips(){$("chips").innerHTML=[["all","All"],...D].map(([k,n])=>`<button class="chip" aria-pressed="${dept===k}" data-k="${k}">${n}</button>`).join("");
+ $("chips").onclick=e=>{const b=e.target.closest("[data-k]");if(b){dept=b.dataset.k;renderChips();renderResults()}}}
+function renderResults(){const q=$("q").value.toLowerCase().trim();
+ const r=E.filter(e=>(dept==="all"||e[1]===dept)&&(!q||e.join(" ").toLowerCase().includes(q)));
+ const ss=q?S.filter(s=>s.join(" ").toLowerCase().includes(q)):[];
+ $("count").textContent=r.length+" topics"+(ss.length?" · "+ss.length+" matching standards in the table below":"");
+ $("results").innerHTML=r.length?r.map(e=>`<div class="card res"><h3>${e[0]}<small>${D.find(d=>d[0]===e[1])[1]}</small></h3><p>${e[2]}</p><dl><dt>Common failure mechanisms</dt><dd>${e[3]}</dd><dt>Inspection and diagnostics</dt><dd>${e[4]}</dd></dl>${e[5].split(", ").map(s=>`<span class="tag">${s}</span>`).join("")}</div>`).join(""):'<p class="sub">No results. Try a broader term.</p>'}
+function renderCalc(k){const c=CALCS[k];
+ $("tabs").innerHTML=Object.entries(CALCS).map(([id,x])=>`<button class="chip" data-k="${id}" aria-pressed="${id===k}">${x.t}</button>`).join("");
+ $("form").innerHTML=c.f.map(([id,l,d])=>`<label class="field">${l}${Array.isArray(d)?`<select id="f_${id}">${d.map(o=>`<option>${o}</option>`).join("")}</select>`:`<input id="f_${id}" type="number" step="any" value="${d}">`}</label>`).join("");
+ $("form").oninput=()=>calc(k);calc(k)}
+function calc(k){const c=CALCS[k],v={};c.f.forEach(([id,,d])=>{const el=$("f_"+id);v[id]=Array.isArray(d)?el.value:parseFloat(el.value)});
+ let rows;try{rows=c.c(v)}catch(e){rows=[["Error","Check inputs",""]]}
+ $("out").innerHTML=rows.map(r=>`<div class="row"><span>${r[0]}</span><b>${fmt(r[1])} ${r[2]}</b></div>`).join("")+`<p>${c.n}</p>`}
+$("tabs").onclick=e=>{const b=e.target.closest("[data-k]");if(b)renderCalc(b.dataset.k)};
+$("stdbody").innerHTML=S.map(s=>`<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join("");
+$("caselist").innerHTML=C.map(c=>`<details><summary>${c[0]}</summary><p>${c[1]}</p><ol><li><b>Possible causes:</b><ul>${c[2].map(x=>`<li>${x}</li>`).join("")}</ul></li><li><b>Diagnostics:</b><ul>${c[3].map(x=>`<li>${x}</li>`).join("")}</ul></li><li><b>Corrective and preventive actions:</b><ul>${c[4].map(x=>`<li>${x}</li>`).join("")}</ul></li></ol></details>`).join("");
+$("q").addEventListener("input",renderResults);
+renderDepts();renderChips();renderResults();renderCalc("pump");
+</script>
+</body>
+</html>
